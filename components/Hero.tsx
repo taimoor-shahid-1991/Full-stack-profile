@@ -46,7 +46,13 @@ export default function Hero() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="github" aria-label="GitHub">
+                  <a
+                    href="https://github.com/taimoor-shahid-1991"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="github"
+                    aria-label="GitHub"
+                  >
                     <i className="fa-brands fa-github"></i>
                   </a>
                 </li>

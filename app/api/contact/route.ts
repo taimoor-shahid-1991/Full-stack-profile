@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { renderContactEmail } from "@/lib/email-templates";
 
 const ALLOWED_SERVICES = [
   "Full Stack Development",
@@ -89,6 +90,7 @@ export async function POST(request: NextRequest) {
         `Email: ${email}\n` +
         `Service: ${service}\n\n` +
         `Message:\n${message}\n`,
+      html: renderContactEmail({ name, email, service, message }),
     });
 
     return respond(true, "Your message has been sent successfully. Thank you!");

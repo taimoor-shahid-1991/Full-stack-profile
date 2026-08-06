@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "aos/dist/aos.css";
@@ -35,6 +36,24 @@ export default function RootLayout({
         <BackToTop />
         <BootstrapClient />
         <AosInit />
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "#161a24",
+              color: "#ffffff",
+              border: "1px solid #262b38",
+              borderRadius: "10px",
+              fontSize: "0.9rem",
+            },
+            success: {
+              iconTheme: { primary: "#ff5e2e", secondary: "#161a24" },
+            },
+            error: {
+              iconTheme: { primary: "#e0455f", secondary: "#161a24" },
+            },
+          }}
+        />
       </body>
     </html>
   );

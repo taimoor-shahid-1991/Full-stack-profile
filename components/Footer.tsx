@@ -17,8 +17,14 @@ export default function Footer() {
             <span>Follow Me</span>
             <ul className="social-list d-flex gap-2 list-unstyled">
               <li>
-                <a href="#" className="twitter" aria-label="Twitter">
-                  <i className="fa-brands fa-twitter"></i>
+                <a
+                  href="https://www.instagram.com/taimoor.shahid.ts"
+                  className="instagram"
+                  aria-label="Instagram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fa-brands fa-instagram"></i>
                 </a>
               </li>
               <li>
@@ -33,12 +39,24 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="snapchat" aria-label="Snapchat">
+                <a
+                  href="https://snapchat.com/t/h5S75kgI"
+                  className="snapchat"
+                  aria-label="Snapchat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="fa-brands fa-snapchat"></i>
                 </a>
               </li>
               <li>
-                <a href="#" className="facebook" aria-label="Facebook">
+                <a
+                  href="https://www.facebook.com/Taymoor.Shahid.1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="facebook"
+                  aria-label="Facebook"
+                >
                   <i className="fa-brands fa-facebook-f"></i>
                 </a>
               </li>

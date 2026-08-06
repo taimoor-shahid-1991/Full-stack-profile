@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, ChangeEvent, FormEvent } from "react";
+import toast from "react-hot-toast";
 
 const ALLOWED_SERVICES = [
   "Full Stack Development",
@@ -43,7 +44,6 @@ export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [wasValidated, setWasValidated] = useState(false);
   const [invalidFields, setInvalidFields] = useState<Set<string>>(new Set());
-  const [status, setStatus] = useState<{ message: string; isError: boolean } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   function getFields(form: HTMLFormElement) {
@@ -81,13 +81,12 @@ export default function ContactForm() {
 
     if (invalidFieldList.length > 0) {
       setWasValidated(true);
-      setStatus({ message: "Please fix the highlighted fields before sending.", isError: true });
+      toast.error("Please fix the highlighted fields before sending.");
       invalidFieldList[0].focus();
       return;
     }
 
     setWasValidated(false);
-    setStatus(null);
     setIsSubmitting(true);
 
     try {
@@ -102,18 +101,18 @@ export default function ContactForm() {
         message: response.ok ? "Message sent successfully." : "Something went wrong. Please try again.",
       }));
 
-      setStatus({
-        message: data.message || (data.success ? "Message sent successfully." : "Something went wrong. Please try again."),
-        isError: !data.success,
-      });
+      const message = data.message || (data.success ? "Message sent successfully." : "Something went wrong. Please try again.");
 
       if (data.success) {
+        toast.success(message);
         form.reset();
         setWasValidated(false);
         setInvalidFields(new Set());
+      } else {
+        toast.error(message);
       }
     } catch {
-      setStatus({ message: "Could not send your message. Please try again later.", isError: true });
+      toast.error("Could not send your message. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -126,11 +125,6 @@ export default function ContactForm() {
       ref={formRef}
       onSubmit={handleSubmit}
     >
-      {status && (
-        <div className={`form-status ${status.isError ? "error" : "success"}`} role="alert" aria-live="polite">
-          {status.message}
-        </div>
-      )}
       <div className="row g-3 g-md-4">
         <div className="col-12">
           <label className="form-label" htmlFor="cf-name">Your Name</label>

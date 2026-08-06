@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Reey';
+  src: url('/font/Reey-Regular.woff2') format('woff2'),
+    url('/font/Reey-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ==========================================================================
    Variables & Base (layered on top of Bootstrap)
    ========================================================================== */
@@ -30,7 +39,7 @@ body {
   position: relative;
   line-height: 1.6;
   overflow-x: hidden;
-  background-image: url("../assets/images/body-bg.png");
+  background-image: url("/images/body-bg.png");
   background-repeat: repeat;
   background-size: contain;
   background-position: center;
@@ -216,7 +225,7 @@ section {
 }
 
 .hero-title {
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-size: clamp(2.6rem, 6vw, 5rem);
   color: var(--text);
   font-weight: 800;
   line-height: 1.05;
@@ -267,7 +276,7 @@ section {
 .hero-social .social-list a.github {
   background: #fff;
   color: #000;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.08) inset;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08) inset;
 }
 
 .hero-social .social-list a.linkedin {
@@ -347,15 +356,15 @@ section {
 }
 
 .about-image-frame {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius);
-    padding-inline: 44px;
-    padding-top: 50px;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding-inline: 44px;
+  padding-top: 50px;
 }
 
 .about-content {
-    padding-left: 70px;
+  padding-left: 70px;
 }
 
 .about-image-frame img {
@@ -375,8 +384,20 @@ section {
   height: 48px;
   pointer-events: none;
 }
-.corner-tl { top: 0; left: 0; border-top: 3px solid var(--accent); border-left: 3px solid var(--accent); }
-.corner-br { bottom: 0; right: 0; border-bottom: 3px solid var(--accent); border-right: 3px solid var(--accent); }
+
+.corner-tl {
+  top: 0;
+  left: 0;
+  border-top: 3px solid var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+.corner-br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 3px solid var(--accent);
+  border-right: 3px solid var(--accent);
+}
 
 .about-text {
   margin-bottom: 16px;
@@ -405,7 +426,6 @@ section {
 .skills {
   background: radial-gradient(ellipse 900px 500px at 80% 20%, rgba(255, 94, 46, 0.09), transparent 70%), var(--bg-alt);
   overflow: hidden;
-  padding-top: 0px;
 }
 
 .skills-bg-glow {
@@ -449,12 +469,11 @@ section {
   z-index: 1;
   display: flex;
   overflow: hidden;
-  margin-bottom: 56px;
   padding: 18px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 94, 46, 0.1), rgba(255, 255, 255, 0.06));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 8px 30px rgba(0, 0, 0, 0.2);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -498,14 +517,37 @@ section {
   transform: translateY(-50%);
 }
 
-.skills-marquee-track span:nth-child(8n+1) { --pill: 97, 218, 251; }
-.skills-marquee-track span:nth-child(8n+2) { --pill: 240, 219, 79; }
-.skills-marquee-track span:nth-child(8n+3) { --pill: 108, 194, 74; }
-.skills-marquee-track span:nth-child(8n+4) { --pill: 168, 85, 247; }
-.skills-marquee-track span:nth-child(8n+5) { --pill: 56, 189, 248; }
-.skills-marquee-track span:nth-child(8n+6) { --pill: 249, 115, 22; }
-.skills-marquee-track span:nth-child(8n+7) { --pill: 236, 72, 153; }
-.skills-marquee-track span:nth-child(8n+8) { --pill: 34, 211, 238; }
+.skills-marquee-track span:nth-child(8n+1) {
+  --pill: 97, 218, 251;
+}
+
+.skills-marquee-track span:nth-child(8n+2) {
+  --pill: 240, 219, 79;
+}
+
+.skills-marquee-track span:nth-child(8n+3) {
+  --pill: 108, 194, 74;
+}
+
+.skills-marquee-track span:nth-child(8n+4) {
+  --pill: 168, 85, 247;
+}
+
+.skills-marquee-track span:nth-child(8n+5) {
+  --pill: 56, 189, 248;
+}
+
+.skills-marquee-track span:nth-child(8n+6) {
+  --pill: 249, 115, 22;
+}
+
+.skills-marquee-track span:nth-child(8n+7) {
+  --pill: 236, 72, 153;
+}
+
+.skills-marquee-track span:nth-child(8n+8) {
+  --pill: 34, 211, 238;
+}
 
 .skills-marquee-track span:hover {
   transform: translateY(-3px) scale(1.04);
@@ -514,11 +556,17 @@ section {
 }
 
 @keyframes skills-marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .skills-marquee-track,
   .skills-orb {
     animation: none;
@@ -669,12 +717,17 @@ section {
   overflow: hidden;
 }
 
-.services .container { position: relative; z-index: 1; }
+.services .container {
+  position: relative;
+  z-index: 1;
+}
 
-.services-header { max-width: 700px; }
+.services-header {
+  max-width: 700px;
+}
 
 .section-eyebrow {
-  font-family: "Dancing Script", cursive;
+  font-family: 'Reey';
   color: var(--text);
   text-transform: none;
   letter-spacing: 0;
@@ -684,7 +737,7 @@ section {
 }
 
 .section-heading {
-  font-family: "Poppins", "Segoe UI", sans-serif;
+  font-family: var(--font-poppins), "Segoe UI", sans-serif;
   color: var(--accent);
   text-transform: uppercase;
   font-weight: 900;
@@ -787,7 +840,7 @@ section {
   padding: 1.2rem 1.4rem 1.4rem;
 }
 
-.project-card-meta > div {
+.project-card-meta>div {
   flex: 1;
 }
 
@@ -824,6 +877,7 @@ section {
     gap: 2rem;
   }
 }
+
 .projects-cta {
   margin-top: 44px;
 }
@@ -1096,8 +1150,8 @@ section {
   margin-top: 6px;
 }
 
-.contact-form.was-validated .form-control.is-invalid ~ .invalid-feedback,
-.contact-form.was-validated .form-select.is-invalid ~ .invalid-feedback {
+.contact-form.was-validated .form-control.is-invalid~.invalid-feedback,
+.contact-form.was-validated .form-select.is-invalid~.invalid-feedback {
   display: block;
 }
 
@@ -1130,9 +1184,9 @@ section {
    Footer
    ========================================================================== */
 .footer {
-    padding: 165px 0 0;
-    background: radial-gradient(ellipse 1009px 500px at 44% 109%, #000, transparent 74%), var(--bg-alt);
-    margin-top: -100px;
+  padding: 165px 0 0;
+  background: radial-gradient(ellipse 1009px 500px at 44% 109%, #000, transparent 74%), var(--bg-alt);
+  margin-top: -100px;
 }
 
 .footer-inner {

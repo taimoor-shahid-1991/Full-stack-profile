@@ -38,9 +38,9 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark header" id="header">
       <div className="container-fluid header-inner">
-        <a href="#home" className="navbar-brand logo">
+        <a href="/" className="navbar-brand logo">
           <div className="logo-badge">
-            <Image src="/images/logo.png" alt="Taimoor Shahid Logo" width={216} height={40} />
+            <Image src="/images/favicon.png" alt="Taimoor Shahid Logo" width={40} height={40} />
           </div>
         </a>
 

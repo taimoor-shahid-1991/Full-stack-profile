@@ -85,7 +85,7 @@ export default function Hero() {
             </h1>
             <h2 className="hero-subtitle">Full Stack Developer</h2>
             <p className="hero-desc">
-              I build modern, responsive and high-performance web applications from idea to deployment.
+              I build modern, responsive and high-performance web & mobile applications from idea to deployment.
             </p>
 
             <div className="hero-actions d-flex flex-wrap gap-3">

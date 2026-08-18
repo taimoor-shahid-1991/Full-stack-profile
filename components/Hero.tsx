@@ -134,7 +134,7 @@ export default function Hero() {
 
           <div className="col-lg-5 hero-image" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
             <Image
-              src="/images/profile.png"
+              src="/images/profile.webp"
               className="img-fluid hero-photo"
               alt="Taimoor Shahid portrait"
               width={460}

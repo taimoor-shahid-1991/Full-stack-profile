@@ -16,7 +16,8 @@
     "nodemailer": "^9.0.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "react-hot-toast": "^2.6.0"
+    "react-hot-toast": "^2.6.0",
+    "react-select": "^5.10.2"
   },
   "devDependencies": {
     "@types/aos": "^3.0.8",

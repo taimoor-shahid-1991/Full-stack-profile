@@ -40,7 +40,7 @@ export default function Navbar() {
       <div className="container-fluid header-inner">
         <a href="/" className="navbar-brand logo">
           <div className="logo-badge">
-            <Image src="/images/favicon.png" alt="Taimoor Shahid Logo" width={40} height={40} />
+            <Image src="/images/favicon.webp" alt="Taimoor Shahid Logo" width={40} height={40} />
           </div>
         </a>
 

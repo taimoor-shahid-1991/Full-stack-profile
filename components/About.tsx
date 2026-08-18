@@ -14,7 +14,7 @@ export default function About() {
         <div className="row align-items-center gy-5">
           <div className="col-lg-5 about-image" data-aos="fade-right" data-aos-duration="900">
             <div className="about-image-frame">
-              <Image src="/images/about-me.png" className="img-fluid" alt="Taimoor Shahid working" width={600} height={720} />
+              <Image src="/images/about-me.webp" className="img-fluid" alt="Taimoor Shahid working" width={600} height={720} />
               <span className="about-image-vignette" aria-hidden="true"></span>
             </div>
             <span className="frame-corner corner-tl" aria-hidden="true"></span>

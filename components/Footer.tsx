@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="footer-brand text-center mb-5" data-aos="fade-up">
             <a href="#home" className="logo d-inline-flex align-items-center gap-2">
               <div className="logo-badge">
-                <Image src="/images/logo.png" alt="Taimoor Shahid Logo" width={216} height={40} />
+                <Image src="/images/logo.webp" alt="Taimoor Shahid Logo" width={216} height={40} />
               </div>
             </a>
           </div>

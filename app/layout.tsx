@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description:
     "Taimoor Shahid is a Full Stack Developer specializing in building modern, responsive, and high-performance web applications.",
   icons: {
-    icon: "/images/favicon.png",
+    icon: "/images/favicon.webp",
   },
 };
 

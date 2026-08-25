@@ -247,6 +247,7 @@ export default function ContactForm() {
       className={`contact-form card${wasValidated ? " was-validated" : ""}`}
       ref={formRef}
       onSubmit={handleSubmit}
+      noValidate
     >
       <div className="row g-3 g-md-4">
         <div className="col-12">

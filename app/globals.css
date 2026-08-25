@@ -1447,7 +1447,7 @@ section {
     border-radius: 0 0;
     width: 100%;
     max-width: 100%;
-    height: 414px;
+    height: 490px;
     margin-bottom: -167px;
   }
 }
@@ -1474,6 +1474,11 @@ section {
   .hero-content,
   .hero-inner {
     text-align: center;
+  }
+
+  .hero-stacks {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-desc {
@@ -1579,6 +1584,10 @@ section {
   .header-inner {
     padding-inline: 12px;
   }
+
+  .hero-photo {
+    height: 440px;
+  }
 }
 
 @media (max-width: 479.98px) {
@@ -1594,6 +1603,10 @@ section {
 
   .hero-photo {
     height: auto;
+  }
+
+  .hero {
+    padding: 100px 0 0;
   }
 }
 

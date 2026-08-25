@@ -77,7 +77,7 @@ export default function Hero() {
       <div ref={particlesRef} id="particles-js" className="particles-bg" />
       <div className="container hero-inner">
         <div className="row align-items-center gy-5">
-          <div className="col-lg-7 hero-content" data-aos="fade-right" data-aos-duration="900">
+          <div className="col-lg-6 col-xxl-7 hero-content" data-aos="fade-right" data-aos-duration="900">
             <span className="eyebrow-mark">Hello, I'm</span>
             <h1 className="hero-title">
               TAIMOOR
@@ -134,7 +134,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="col-lg-5 hero-image" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+          <div className="col-lg-6 col-xxl-5 hero-image" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
             <Image
               src="/images/profile.webp"
               className="img-fluid hero-photo"

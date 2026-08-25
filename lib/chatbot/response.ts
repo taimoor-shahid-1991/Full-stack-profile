@@ -81,7 +81,7 @@ function buildResponse(match: IntentMatch): string {
 
     case "projects":
       return [
-        "Here are some of Taimoor's recent projects:",
+        "Taimoor has successfully delivered 50+ projects. Here are some of his recent projects:",
         list(PORTFOLIO_PROJECTS.map((p) => `${p.name} — ${p.type}`)),
         "",
         "Ask me about any of them by name for more detail.",

@@ -10,6 +10,7 @@ import "./globals.css";
 import BackToTop from "@/components/BackToTop";
 import BootstrapClient from "@/components/BootstrapClient";
 import AosInit from "@/components/AosInit";
+import Chatbot from "@/components/chatbot/Chatbot";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body>
         {children}
         <BackToTop />
+        <Chatbot />
         <BootstrapClient />
         <AosInit />
         <Toaster

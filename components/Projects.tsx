@@ -1,4 +1,4 @@
-type Project = {
+export type Project = {
   name: string;
   image: string;
   type: string;
@@ -8,7 +8,7 @@ type Project = {
   githubUrl?: string;
 };
 
-const PROJECTS: Project[] = [
+export const PROJECTS: Project[] = [
   {
     name: "AssetsRack",
     image: "/images/assetsrack.webp",
@@ -46,6 +46,27 @@ const PROJECTS: Project[] = [
     stack: ["Bubble.io", "No-Code", "API Connector", "Custom Workflows", "CSS"],
     type: "Real Estate Matchmaking",
     description: "A no-code real estate matching web application enabling buyers, sellers, landlords, and tenants to connect via custom questionnaire matching, background checks, and dynamic property search."
+  },
+  {
+    name: "OzMovies",
+    image: "/images/ozmovies.webp",
+    stack: ["Next.js", "Typescript", "Tailwind css", "MongoDB", "Rest API", "Serverless Functions"],
+    type: "Streaming / Media Application",
+    description: "Created a media-focused application designed around content discovery, user experience, and smooth application interactions for entertainment browsing."
+  },
+  {
+    name: "ESIM Management System",
+    image: "/images/esim.webp",
+    stack: ["React.js", "RTK Query", "Tailwind css", "MongoDB", "Rest API"],
+    type: "Travel / Telecom Management System",
+    description: "Built a complete ESIM management platform for handling product flows, user operations, and operational processes in a telecom-oriented business workflow."
+  },
+  {
+    name: "FLO.ink",
+    image: "/images/flo.ink.webp",
+    stack: ["Next.js", "Typescript", "Tailwind css", "MongoDB", "Rest API", "Serverless Functions"],
+    type: "Short-form Video / Creator Platform",
+    description: "Developed and maintained a creator-focused platform centered on short-form content, user interactions, and streamlined social engagement workflows."
   }
 ];
 

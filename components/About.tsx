@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const STATS = [
+export const STATS = [
   { icon: "💼", label: "Full Stack Developer", delay: 0 },
   { icon: "⏱️", label: "5+ Years Experience", delay: 100 },
   { icon: "✅", label: "50+ Projects Completed", delay: 200 },

@@ -9,12 +9,14 @@ import {
   WebDevIcon,
 } from "@/components/ServiceIcons";
 
-const SERVICES: {
+export type Service = {
   id: string;
   icon: ReactNode;
   title: string;
   text: string;
-}[] = [
+};
+
+export const SERVICES: Service[] = [
   {
     id: "01",
     icon: <WebDevIcon />,

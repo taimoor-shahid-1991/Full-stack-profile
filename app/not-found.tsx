@@ -7,6 +7,7 @@ export default function NotFound() {
   const particlesRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const particlesEl = particlesRef.current;
     if (typeof window === "undefined" || !particlesRef.current) return;
 
     const script = document.createElement("script");
@@ -65,7 +66,7 @@ export default function NotFound() {
     document.body.appendChild(script);
 
     return () => {
-      const canvas = particlesRef.current?.querySelector("canvas");
+      const canvas = particlesEl?.querySelector("canvas");
       if (canvas) {
         canvas.remove();
       }

@@ -7,6 +7,7 @@ export default function Hero() {
   const particlesRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const particlesEl = particlesRef.current;
     if (typeof window === "undefined" || !particlesRef.current) return;
 
     const script = document.createElement("script");
@@ -65,7 +66,7 @@ export default function Hero() {
     document.body.appendChild(script);
 
     return () => {
-      const canvas = particlesRef.current?.querySelector("canvas");
+      const canvas = particlesEl?.querySelector("canvas");
       if (canvas) {
         canvas.remove();
       }
@@ -78,13 +79,13 @@ export default function Hero() {
       <div className="container hero-inner">
         <div className="row align-items-center gy-5">
           <div className="col-lg-6 col-xxl-7 hero-content" data-aos="fade-right" data-aos-duration="900">
-            <span className="eyebrow-mark">Hello, I'm</span>
+            <span className="eyebrow-mark">Hello, I&apos;m</span>
             <h1 className="hero-title">
               TAIMOOR
               <br />
               <span className="text-accent">SHAHID.</span>
             </h1>
-            <h2 className="hero-subtitle">Full Stack Developer</h2>
+            <h2 className="hero-subtitle">Senior Frontend &amp; Full-Stack Developer</h2>
             <span className="hero-stacks mb-3 d-block">React.js • Next.js • Vue.js • Node.js • Express.js • MongoDB | Shopify • Wordpress • Webflow • Bubble.io</span>
             <p className="hero-desc">
               I build modern, responsive and high-performance web & mobile applications from idea to deployment.

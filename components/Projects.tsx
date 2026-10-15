@@ -10,12 +10,20 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    name: "Fobell",
+    image: "/images/fobell.webp",
+    type: "EdTech / AI-Powered Exam Preparation",
+    description:
+      "An AI-powered exam preparation platform bringing verified teachers, exam resources, worksheets, live classes, and scholarships together for Cambridge IGCSE, A Level, and local board students.",
+    stack: ["Next.js", "Typescript", "Tailwind css", "Node.js", "MongoDB", "AI Integration"],
+  },
+  {
     name: "AssetsRack",
     image: "/images/assetsrack.webp",
     type: "Asset Management / SaaS Platform",
     description:
       "A modern asset-management platform helping organizations manage assets, users, reservations, reporting, and operational workflows through a clean SaaS-style interface.",
-    stack: ["Next.js", "NextAuth.js", "Next.js Backend"],
+    stack: ["Next.js", "Typescript", "NextAuth.js", "Next.js Backend", "Tailwind css", "MongoDB"],
   },
   {
     name: "Cloudarithm",
@@ -23,7 +31,7 @@ export const PROJECTS: Project[] = [
     type: "Digital Services / Software Development Agency",
     description:
       "A professional digital-services website presenting software development capabilities, engagement models, custom solutions, client success stories, and conversion-focused calls to action.",
-    stack: ["Next.js", "NextAuth.js", "Next.js Backend"],
+    stack: ["Next.js", "Typescript", "NextAuth.js", "Next.js Backend", "Tailwind css", "Rest API"],
   },
   {
     name: "MetaMutoDAO",
@@ -31,7 +39,7 @@ export const PROJECTS: Project[] = [
     type: "Decentralized / DAO Platform",
     description:
       "A dark, immersive decentralized platform focused on community-driven governance, proposals, voting, crowdfunding, and autonomous ecosystem participation.",
-    stack: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    stack: ["React.js", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "Web3.js"],
   },
   {
     name: "Marilyn Center",
@@ -43,7 +51,7 @@ export const PROJECTS: Project[] = [
   {
     name: "RESolution",
     image: "/images/resolution.webp",
-    stack: ["Bubble.io", "No-Code", "API Connector", "Custom Workflows", "CSS"],
+    stack: ["Bubble.io", "No-Code", "API Connector", "Custom Workflows", "Responsive Design", "CSS"],
     type: "Real Estate Matchmaking",
     description: "A no-code real estate matching web application enabling buyers, sellers, landlords, and tenants to connect via custom questionnaire matching, background checks, and dynamic property search."
   },
@@ -57,7 +65,7 @@ export const PROJECTS: Project[] = [
   {
     name: "ESIM Management System",
     image: "/images/esim.webp",
-    stack: ["React.js", "RTK Query", "Tailwind css", "MongoDB", "Rest API"],
+    stack: ["React.js", "Redux Toolkit", "RTK Query", "Tailwind css", "MongoDB", "Rest API"],
     type: "Travel / Telecom Management System",
     description: "Built a complete ESIM management platform for handling product flows, user operations, and operational processes in a telecom-oriented business workflow."
   },

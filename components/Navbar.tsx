@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navbar() {
   const navRef = useRef<HTMLDivElement>(null);
@@ -38,11 +39,11 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark header" id="header">
       <div className="container-fluid header-inner">
-        <a href="/" className="navbar-brand logo">
+        <Link href="/" className="navbar-brand logo">
           <div className="logo-badge">
             <Image src="/images/favicon.webp" alt="Taimoor Shahid Logo" width={40} height={40} />
           </div>
-        </a>
+        </Link>
 
         <button
           className="navbar-toggler"

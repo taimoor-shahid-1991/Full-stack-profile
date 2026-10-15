@@ -1,10 +1,11 @@
 import Image from "next/image";
 
 export const STATS = [
-  { icon: "💼", label: "Full Stack Developer", delay: 0 },
-  { icon: "⏱️", label: "5+ Years Experience", delay: 100 },
-  { icon: "✅", label: "50+ Projects Completed", delay: 200 },
-  { icon: "⭐", label: "Committed to Quality", delay: 300 },
+  { icon: "🚀", label: "Senior Frontend Developer", delay: 0 },
+  { icon: "💼", label: "Full Stack Developer", delay: 100 },
+  { icon: "⏱️", label: "5+ Years Experience", delay: 200 },
+  { icon: "✅", label: "50+ Projects Completed", delay: 300 },
+  { icon: "⭐", label: "Committed to Quality", delay: 400 },
 ];
 
 export default function About() {
@@ -36,8 +37,8 @@ export default function About() {
             </p>
 
             <div className="row g-3 about-stats">
-              {STATS.map((stat) => (
-                <div className="col-6" data-aos="zoom-in" data-aos-delay={stat.delay} key={stat.label}>
+              {STATS.map((stat, i) => (
+                <div className={i === STATS.length - 1 && STATS.length % 2 ? "col-12" : "col-6"} data-aos="zoom-in" data-aos-delay={stat.delay} key={stat.label}>
                   <div className="card stat-item h-100">
                     <div className="card-body d-flex align-items-center gap-2">
                       <span className="stat-icon">{stat.icon}</span>

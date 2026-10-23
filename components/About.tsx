@@ -27,13 +27,14 @@ export default function About() {
               Building digital solutions with <span className="text-accent">clean code</span> and creative thinking.
             </h2>
             <p className="about-text">
-              I&apos;m a Full Stack Developer with 5+ years of experience building scalable, and high-performance
-              web applications. I specialize in both frontend and backend technologies, creating seamless
-              digital experiences that make an impact.
+              I&apos;m a Senior Frontend &amp; Full-Stack Developer with 5+ years of experience building scalable,
+              high-performance web applications. My core stack is React, Next.js and TypeScript on the frontend,
+              with Node.js, PostgreSQL and MongoDB on the backend.
             </p>
             <p className="about-text">
-              I enjoy turning complex problems into simple, beautiful and intuitive solutions. My goal is to
-              write clean, maintainable code that builds products that make an impact.
+              I enjoy turning complex problems into simple, intuitive solutions, from reusable component
+              architecture to well-structured APIs. My goal is to write clean, maintainable code that ships
+              products people actually use.
             </p>
 
             <div className="row g-3 about-stats">

@@ -25,7 +25,7 @@ export default function Testimonials() {
       <div className="container">
         <div className="section-header text-center mx-auto" data-aos="fade-up">
           <p className="eyebrow section-eyebrow">Testimonials</p>
-          <h2 className="section-title section-heading">Clients Feedback</h2>
+          <h2 className="section-title section-heading">Client Feedback</h2>
         </div>
 
         <div

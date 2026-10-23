@@ -1,7 +1,10 @@
 import { detectIntent } from "@/lib/chatbot/intents";
 import {
   CONTACT,
+  CORE_SKILLS,
   EDUCATION,
+  EXPERIENCE,
+  LANGUAGES,
   PORTFOLIO_PROJECTS,
   PORTFOLIO_SERVICES,
   PROFILE,
@@ -22,6 +25,12 @@ function projectResponse(project: (typeof PORTFOLIO_PROJECTS)[number]): string {
     `**${project.name}** — ${project.type}`,
     project.description,
     "",
+    `Taimoor's role: ${project.role}`,
+    list(project.contributions),
+    "",
+    `Challenge: ${project.challenge}`,
+    `How he solved it: ${project.solution}`,
+    "",
     "Tech stack:",
     list(project.stack),
   ].join("\n");
@@ -39,7 +48,38 @@ function buildResponse(match: IntentMatch): string {
       return `${PROFILE.summary} He's based in ${PROFILE.location} and enjoys turning complex problems into clean, maintainable solutions.`;
 
     case "experience":
-      return `Taimoor has ${PROFILE.experience} of professional experience as a ${PROFILE.role}, working across both frontend and backend development on scalable, production-grade applications.`;
+      return [
+        `Taimoor has ${PROFILE.experience} of professional experience building scalable, production-grade web applications across frontend and backend.`,
+        "",
+        "Work history:",
+        list(EXPERIENCE.map((job) => `${job.title}, ${job.company} (${job.period})`)),
+      ].join("\n");
+
+    case "mobile":
+      return "Yes. Taimoor builds cross-platform mobile apps with React Native, though his main focus is web applications with React, Next.js, TypeScript and Node.js.";
+
+    case "availability":
+      return [
+        "Taimoor is open to discussing new projects and opportunities. The quickest way to reach him:",
+        `• Email: ${CONTACT.email}`,
+        `• WhatsApp: ${CONTACT.whatsapp}`,
+        "• Or use the contact form at the bottom of this page.",
+      ].join("\n");
+
+    case "languages":
+      return `Taimoor speaks ${LANGUAGES.join(" and ")}.`;
+
+    case "skill": {
+      const skill = match.skill;
+      if (!skill) return FALLBACK_TEXT;
+      if (skill.core) {
+        return `Yes, ${skill.label} is part of Taimoor's core ${skill.category} stack, and he uses it day-to-day on production projects.`;
+      }
+      return `Yes, Taimoor has worked with ${skill.label} (${skill.category}). His main focus, though, is ${CORE_SKILLS.join(", ")}.`;
+    }
+
+    case "unknownSkill":
+      return `${match.term ? `"${match.term}" isn't` : "That isn't"} part of Taimoor's listed stack. His core technologies are ${CORE_SKILLS.join(", ")}. Ask me about any of them, or about his projects.`;
 
     case "techStack":
       return [
@@ -62,7 +102,7 @@ function buildResponse(match: IntentMatch): string {
       return "Yes, Next.js is one of Taimoor's core frontend technologies — this portfolio itself is built with it.";
 
     case "react":
-      return "Yes, React.js is one of Taimoor's core frontend technologies, and he's also built cross-platform apps with React Native.";
+      return "Yes, React.js is one of Taimoor's core frontend technologies. He uses it with Next.js and TypeScript on most of his projects.";
 
     case "database":
       return ["Taimoor works with the following databases and ORMs:", list(SKILLS.database)].join("\n");
@@ -123,7 +163,7 @@ export function getSuggestedQuestions(): SuggestedQuestion[] {
     { id: "about", label: "Tell me about Taimoor" },
     { id: "experience", label: "How much experience does he have?" },
     { id: "techStack", label: "What technologies does he use?" },
-    { id: "nextjs", label: "Does he work with Next.js?" },
+    { id: "typescript", label: "Does he know TypeScript?" },
     { id: "projects", label: "What projects has he worked on?" },
     { id: "project-1", label: `Tell me about ${PORTFOLIO_PROJECTS[0]?.name}` },
     { id: "education", label: "What is his educational background?" },

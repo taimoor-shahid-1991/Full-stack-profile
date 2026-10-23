@@ -1,4 +1,5 @@
 import type { Project } from "@/components/Projects";
+import type { SKILL_LOOKUP } from "@/lib/chatbot/knowledge";
 
 export type ChatMessageRole = "user" | "assistant";
 
@@ -28,6 +29,11 @@ export type AIIntent =
   | "strengths"
   | "contact"
   | "location"
+  | "mobile"
+  | "availability"
+  | "languages"
+  | "skill"
+  | "unknownSkill"
   | "thanks"
   | "fallback";
 
@@ -35,6 +41,8 @@ export type IntentMatch = {
   intent: AIIntent;
   score: number;
   project?: Project;
+  skill?: (typeof SKILL_LOOKUP)[number];
+  term?: string;
 };
 
 export type SuggestedQuestion = {

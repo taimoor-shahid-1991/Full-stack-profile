@@ -74,15 +74,15 @@ export async function POST(request: NextRequest) {
   const transporter = nodemailer.createTransport({
     host: SMTP_HOST,
     port: Number(SMTP_PORT ?? 587),
-    secure: false,
+    secure: Number(SMTP_PORT) === 465,
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
 
   try {
     await transporter.sendMail({
-      from: `"${MAIL_FROM_NAME ?? "Portfolio Contact Form"}" <${MAIL_FROM_EMAIL ?? SMTP_USER}>`,
+      from: { name: MAIL_FROM_NAME ?? "Portfolio Contact Form", address: MAIL_FROM_EMAIL ?? SMTP_USER },
       to: MAIL_RECIPIENT,
-      replyTo: `"${name}" <${email}>`,
+      replyTo: { name, address: email },
       subject: `New Contact Inquiry: ${service}`,
       text:
         "You have received a new message from your portfolio contact form.\n\n" +

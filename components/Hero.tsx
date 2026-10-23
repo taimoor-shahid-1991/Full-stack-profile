@@ -86,7 +86,7 @@ export default function Hero() {
               <span className="text-accent">SHAHID.</span>
             </h1>
             <h2 className="hero-subtitle">Senior Frontend &amp; Full-Stack Developer</h2>
-            <span className="hero-stacks mb-3 d-block">React.js • Next.js • Vue.js • Node.js • Express.js • MongoDB | Shopify • Wordpress • Webflow • Bubble.io</span>
+            <span className="hero-stacks mb-3 d-block">React.js • Next.js • TypeScript • Node.js • PostgreSQL • MongoDB</span>
             <p className="hero-desc">
               I build modern, responsive and high-performance web & mobile applications from idea to deployment.
             </p>

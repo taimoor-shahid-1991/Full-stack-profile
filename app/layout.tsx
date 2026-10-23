@@ -19,9 +19,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Taimoor Shahid | Full Stack Developer",
+  title: "Taimoor Shahid | Senior Frontend & Full-Stack Developer",
   description:
-    "Taimoor Shahid is a Full Stack Developer specializing in building modern, responsive, and high-performance web applications.",
+    "Taimoor Shahid is a Senior Frontend & Full-Stack Developer specializing in React, Next.js, TypeScript and Node.js, building modern, high-performance web applications.",
   icons: {
     icon: "/images/favicon.webp",
   },

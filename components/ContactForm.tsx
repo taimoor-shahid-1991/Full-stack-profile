@@ -285,7 +285,6 @@ export default function ContactForm() {
             ref={serviceSelectRef}
             inputId="cf-service"
             instanceId="cf-service"
-            name="service"
             className="service-select"
             classNamePrefix="service-select"
             options={SERVICE_OPTIONS}

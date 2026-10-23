@@ -69,7 +69,7 @@ export const SKILL_LOOKUP: { label: string; aliases: string[]; category: string;
 export const EXPERIENCE = [
   {
     title: "Full Stack Developer",
-    company: "ArhamSoft (Pvt.) Ltd.",
+    company: "ArhamSoft IT Solutions (Pvt.) Ltd.",
     period: "Jan 2026 – Present",
   },
   {

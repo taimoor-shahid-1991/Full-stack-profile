@@ -1,7 +1,7 @@
 type ContactEmailData = {
   name: string;
   email: string;
-  service: string;
+  details: [label: string, value: string][];
   message: string;
 };
 
@@ -14,10 +14,20 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;");
 }
 
-export function renderContactEmail({ name, email, service, message }: ContactEmailData) {
+export function renderContactEmail({ name, email, details, message }: ContactEmailData) {
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
-  const safeService = escapeHtml(service);
+  const detailRows = details
+    .map(
+      ([label, value]) => `
+                  <tr>
+                    <td style="padding:12px 0; border-bottom:1px solid #262b38; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#6a7180; vertical-align:top;">${escapeHtml(label)}</td>
+                    <td style="padding:12px 0; border-bottom:1px solid #262b38; font-size:14px;">
+                      <span style="display:inline-block; background:rgba(255,94,46,0.12); border:1px solid rgba(255,94,46,0.35); color:#ff5e2e; font-weight:600; font-size:12px; padding:5px 12px; border-radius:999px;">${escapeHtml(value)}</span>
+                    </td>
+                  </tr>`
+    )
+    .join("");
   const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
 
   return `<!doctype html>
@@ -54,13 +64,7 @@ export function renderContactEmail({ name, email, service, message }: ContactEma
                     <td style="padding:12px 0; border-bottom:1px solid #262b38; font-size:14px;">
                       <a href="mailto:${safeEmail}" style="color:#ff5e2e; font-weight:600; text-decoration:none;">${safeEmail}</a>
                     </td>
-                  </tr>
-                  <tr>
-                    <td style="padding:12px 0; border-bottom:1px solid #262b38; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#6a7180; vertical-align:top;">Service</td>
-                    <td style="padding:12px 0; border-bottom:1px solid #262b38; font-size:14px;">
-                      <span style="display:inline-block; background:rgba(255,94,46,0.12); border:1px solid rgba(255,94,46,0.35); color:#ff5e2e; font-weight:600; font-size:12px; padding:5px 12px; border-radius:999px;">${safeService}</span>
-                    </td>
-                  </tr>
+                  </tr>${detailRows}
                 </table>
 
                 <div style="margin-top:20px;">
@@ -75,7 +79,7 @@ export function renderContactEmail({ name, email, service, message }: ContactEma
             </tr>
             <tr>
               <td style="padding:20px 32px; border-top:1px solid #262b38; font-size:12px; color:#6a7180; text-align:center;">
-                Sent automatically from the contact form on taimoorshahid.com
+                Sent automatically from the contact form on taimoor-shahid.vercel.app
               </td>
             </tr>
           </table>

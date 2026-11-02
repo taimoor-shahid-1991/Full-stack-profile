@@ -14,50 +14,48 @@ export default function Footer() {
           </div>
 
           <div className="footer-social d-flex justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="100">
-            <span>Follow Me</span>
+            <span>Connect</span>
             <ul className="social-list d-flex gap-2 list-unstyled">
               <li>
                 <a
-                  href="https://www.instagram.com/taimoor.shahid.ts"
-                  className="instagram"
-                  aria-label="Instagram"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="fa-brands fa-instagram"></i>
-                </a>
-              </li>
-              <li>
-                <a
                   href="https://www.linkedin.com/in/taimoor-shahid-713277234"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="linkedin"
                   aria-label="LinkedIn"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <i className="fa-brands fa-linkedin-in"></i>
+                  <i className="fa-brands fa-linkedin-in" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://snapchat.com/t/h5S75kgI"
-                  className="snapchat"
-                  aria-label="Snapchat"
+                  href="https://github.com/taimoor-shahid-1991"
+                  className="github"
+                  aria-label="GitHub"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fa-brands fa-snapchat"></i>
+                  <i className="fa-brands fa-github" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.facebook.com/Taymoor.Shahid.1"
+                  href="mailto:taymoor.shahid.ts@gmail.com"
+                  className="email"
+                  aria-label="Email"
+                >
+                  <i className="fa-solid fa-envelope" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/923238820858"
+                  className="whatsapp"
+                  aria-label="WhatsApp"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="facebook"
-                  aria-label="Facebook"
                 >
-                  <i className="fa-brands fa-facebook-f"></i>
+                  <i className="fa-brands fa-whatsapp" aria-hidden="true"></i>
                 </a>
               </li>
             </ul>

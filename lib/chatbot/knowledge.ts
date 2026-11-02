@@ -1,6 +1,7 @@
 import { PROJECTS } from "@/components/Projects";
 import { SERVICES } from "@/components/Services";
 import { STATS } from "@/components/About";
+import { COMPANY, EXPERIENCE as EXPERIENCE_ROLES } from "@/components/Experience";
 
 export const PROFILE = {
   name: "Taimoor Shahid",
@@ -66,18 +67,7 @@ export const SKILL_LOOKUP: { label: string; aliases: string[]; category: string;
   { label: "Vercel", aliases: ["vercel"], category: "deployment" },
 ];
 
-export const EXPERIENCE = [
-  {
-    title: "Full Stack Developer",
-    company: "ArhamSoft IT Solutions (Pvt.) Ltd.",
-    period: "Jan 2026 – Present",
-  },
-  {
-    title: "Senior Frontend Developer",
-    company: "ArhamSoft IT Solutions (Pvt.) Ltd.",
-    period: "Aug 2021 – Dec 2025",
-  },
-];
+export const EXPERIENCE = EXPERIENCE_ROLES.map((role) => ({ ...role, company: COMPANY.name }));
 
 export const LANGUAGES = ["English", "Urdu"];
 

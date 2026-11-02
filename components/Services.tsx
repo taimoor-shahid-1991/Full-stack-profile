@@ -8,6 +8,7 @@ import {
   MobileDevIcon,
   WebDevIcon,
 } from "@/components/ServiceIcons";
+import HireMeLink from "@/components/HireMeLink";
 
 export type Service = {
   id: string;
@@ -20,38 +21,38 @@ export const SERVICES: Service[] = [
   {
     id: "01",
     icon: <WebDevIcon />,
-    title: "Web Development",
-    text: "Building fast, responsive and scalable web applications.",
+    title: "SaaS & Web Applications",
+    text: "End-to-end apps with Next.js, Node.js and PostgreSQL or MongoDB, from database design to a deployed, production-ready UI.",
   },
   {
     id: "02",
-    icon: <MobileDevIcon />,
-    title: "Mobile App Development",
-    text: "Building cross-platform mobile applications with React Native.",
+    icon: <FrontendDevIcon />,
+    title: "Frontend for Your Product",
+    text: "Join your team to ship features, turn Figma designs into pixel-perfect React UIs, and clean up slow or hard-to-maintain frontends.",
   },
   {
     id: "03",
-    icon: <FrontendDevIcon />,
-    title: "Frontend Development",
-    text: "Crafting pixel-perfect interfaces with modern technologies.",
+    icon: <BackendDevIcon />,
+    title: "APIs & Backend",
+    text: "Secure REST APIs with authentication, role-based access and integrations such as payment gateways and cloud services.",
   },
   {
     id: "04",
-    icon: <BackendDevIcon />,
-    title: "Backend Development",
-    text: "Building secure and robust server-side applications and APIs.",
+    icon: <DeploymentIcon />,
+    title: "Performance & SEO",
+    text: "Speed up slow pages with Next.js server rendering, smart caching and image/bundle optimisation, then deploy on Vercel.",
   },
   {
     id: "05",
-    icon: <CmsDevIcon />,
-    title: "CMS Development",
-    text: "Custom WordPress and no-code solutions for your business.",
+    icon: <MobileDevIcon />,
+    title: "Mobile Apps",
+    text: "Cross-platform iOS and Android apps with React Native that share logic with your web app.",
   },
   {
     id: "06",
-    icon: <DeploymentIcon />,
-    title: "Deployment",
-    text: "Deploying applications with best performance and security.",
+    icon: <CmsDevIcon />,
+    title: "Business Websites",
+    text: "WordPress, Shopify, Webflow and Bubble.io sites your team can update without needing a developer.",
   },
 ];
 
@@ -60,8 +61,11 @@ export default function Services() {
     <section className="services" id="services">
       <div className="container">
         <div className="section-header text-center mx-auto services-header" data-aos="fade-up">
-          <p className="eyebrow section-eyebrow">What I Do</p>
-          <h2 className="section-title section-heading">Services I Provide</h2>
+          <p className="eyebrow section-eyebrow">Services</p>
+          <h2 className="section-title section-heading">How I Can Help</h2>
+          <p className="services-intro">
+            Alongside my full-time role, I take on selected freelance projects for startups and businesses.
+          </p>
         </div>
 
         <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 justify-content-center g-4">
@@ -79,6 +83,13 @@ export default function Services() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="services-cta text-center" data-aos="fade-up">
+          <p>Have a project in mind?</p>
+          <HireMeLink className="btn btn-primary btn-lg">
+            Let&apos;s Discuss Your Project <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </HireMeLink>
         </div>
       </div>
     </section>

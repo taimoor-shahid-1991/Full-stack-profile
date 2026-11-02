@@ -61,16 +61,19 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="nav" ref={navRef}>
           <ul className="navbar-nav mx-lg-auto mb-3 mb-lg-0 nav-list">
             <li className="nav-item">
-              <a href="#about" className="nav-link" onClick={handleNavLinkClick}>About</a>
-            </li>
-            <li className="nav-item">
-              <a href="#skills" className="nav-link" onClick={handleNavLinkClick}>Skills</a>
+              <a href="#experience" className="nav-link" onClick={handleNavLinkClick}>Experience</a>
             </li>
             <li className="nav-item">
               <a href="#projects" className="nav-link" onClick={handleNavLinkClick}>Projects</a>
             </li>
             <li className="nav-item">
+              <a href="#skills" className="nav-link" onClick={handleNavLinkClick}>Skills</a>
+            </li>
+            <li className="nav-item">
               <a href="#services" className="nav-link" onClick={handleNavLinkClick}>Services</a>
+            </li>
+            <li className="nav-item">
+              <a href="#about" className="nav-link" onClick={handleNavLinkClick}>About</a>
             </li>
           </ul>
           <a href="#contact" className="btn btn-outline-light btn-connect" onClick={handleNavLinkClick}>

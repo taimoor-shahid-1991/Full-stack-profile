@@ -1,31 +1,27 @@
 "use client";
 
-import { useRef, useState, ChangeEvent, FormEvent } from "react";
+import { useEffect, useRef, useState, ChangeEvent, FormEvent } from "react";
 import Select, { GroupBase, SelectInstance, StylesConfig } from "react-select";
 import toast from "react-hot-toast";
 
-const ALLOWED_SERVICES = [
-  "Full Stack Development",
-  "Frontend Development",
-  "Backend Development",
-  "Mobile App Development (React Native)",
-  "WordPress",
-  "Shopify",
-  "Webflow",
-  "Bubble.io",
-  "Other",
-];
+import {
+  BUDGET_OPTIONS,
+  CONTACT_PRESET_EVENT,
+  INQUIRY_TYPES,
+  SERVICE_OPTIONS,
+  isInquiryKey,
+  type InquiryKey,
+} from "@/lib/contact-options";
 
-const SERVICE_OPTIONS = ALLOWED_SERVICES.map((service) => ({
-  value: service,
-  label: service,
-}));
+type Option = { value: string; label: string };
 
-type ServiceOption = (typeof SERVICE_OPTIONS)[number];
+const toOptions = (values: readonly string[]): Option[] => values.map((value) => ({ value, label: value }));
 
-function getServiceSelectStyles(
-  isInvalid: boolean
-): StylesConfig<ServiceOption, false, GroupBase<ServiceOption>> {
+const INQUIRY_OPTIONS: Option[] = Object.entries(INQUIRY_TYPES).map(([value, label]) => ({ value, label }));
+const SERVICE_SELECT_OPTIONS = toOptions(SERVICE_OPTIONS);
+const BUDGET_SELECT_OPTIONS = toOptions(BUDGET_OPTIONS);
+
+function getSelectStyles(isInvalid: boolean): StylesConfig<Option, false, GroupBase<Option>> {
   return {
     control: (base, state) => ({
       ...base,
@@ -130,17 +126,65 @@ function validateField(field: HTMLInputElement | HTMLTextAreaElement) {
   return fieldValid;
 }
 
-function validateService(value: string) {
-  return value !== "" && ALLOWED_SERVICES.includes(value);
-}
+const MESSAGE_PLACEHOLDERS: Record<InquiryKey | "", string> = {
+  "": "Tell me a bit about what you have in mind...",
+  role: "Tell me about the role, team and tech stack...",
+  freelance: "Tell me about your project, goals and timeline...",
+  other: "What would you like to talk about?",
+};
 
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
-  const serviceSelectRef = useRef<SelectInstance<ServiceOption, false>>(null);
+  const inquirySelectRef = useRef<SelectInstance<Option, false>>(null);
+  const serviceSelectRef = useRef<SelectInstance<Option, false>>(null);
   const [wasValidated, setWasValidated] = useState(false);
   const [invalidFields, setInvalidFields] = useState<Set<string>>(new Set());
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [inquiry, setInquiry] = useState<InquiryKey | "">("");
   const [service, setService] = useState("");
+  const [budget, setBudget] = useState("");
+
+  const isFreelance = inquiry === "freelance";
+
+  // "Hire Me for a Project" buttons elsewhere on the page pre-select the inquiry type.
+  useEffect(() => {
+    function handlePreset(e: Event) {
+      const value = (e as CustomEvent<string>).detail;
+      if (!isInquiryKey(value)) return;
+      setInquiry(value);
+      if (value !== "freelance") {
+        setService("");
+        setBudget("");
+      }
+      setInvalidFields((prev) => {
+        const next = new Set(prev);
+        next.delete("inquiry");
+        next.delete("service");
+        return next;
+      });
+    }
+    window.addEventListener(CONTACT_PRESET_EVENT, handlePreset);
+    return () => window.removeEventListener(CONTACT_PRESET_EVENT, handlePreset);
+  }, []);
+
+  function updateInvalid(name: string, valid: boolean) {
+    setInvalidFields((prev) => {
+      const next = new Set(prev);
+      if (valid) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  }
+
+  function selectInquiry(value: InquiryKey | "") {
+    setInquiry(value);
+    if (value !== "freelance") {
+      setService("");
+      setBudget("");
+      updateInvalid("service", true);
+    }
+    updateInvalid("inquiry", value !== "");
+  }
 
   function getFields(form: HTMLFormElement) {
     return Array.from(
@@ -152,31 +196,13 @@ export default function ContactForm() {
 
   function handleFieldChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const field = e.currentTarget;
-    setInvalidFields((prev) => {
-      const next = new Set(prev);
-      if (wasValidated) {
-        if (validateField(field)) next.delete(field.name);
-        else next.add(field.name);
-      } else {
-        next.delete(field.name);
-      }
-      return next;
-    });
+    updateInvalid(field.name, !wasValidated || validateField(field));
   }
 
-  function handleServiceChange(option: ServiceOption | null) {
+  function handleServiceChange(option: Option | null) {
     const value = option?.value ?? "";
     setService(value);
-    setInvalidFields((prev) => {
-      const next = new Set(prev);
-      if (wasValidated) {
-        if (validateService(value)) next.delete("service");
-        else next.add("service");
-      } else {
-        next.delete("service");
-      }
-      return next;
-    });
+    updateInvalid("service", !wasValidated || value !== "");
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -187,22 +213,21 @@ export default function ContactForm() {
     const fields = getFields(form);
     const invalidFieldList = fields.filter((field) => !validateField(field));
     const nextInvalid = new Set(invalidFieldList.map((field) => field.name));
+    const inquiryMissing = inquiry === "";
+    const serviceMissing = isFreelance && service === "";
 
-    if (!validateService(service)) {
-      nextInvalid.add("service");
-    }
+    if (inquiryMissing) nextInvalid.add("inquiry");
+    if (serviceMissing) nextInvalid.add("service");
 
     setInvalidFields(nextInvalid);
 
-    if (invalidFieldList.length > 0 || !validateService(service)) {
+    if (nextInvalid.size > 0) {
       setWasValidated(true);
       toast.error("Please fix the highlighted fields before sending.");
 
-      if (invalidFieldList.length > 0) {
-        invalidFieldList[0].focus();
-      } else {
-        serviceSelectRef.current?.focus();
-      }
+      if (inquiryMissing) inquirySelectRef.current?.focus();
+      else if (invalidFieldList.length > 0) invalidFieldList[0].focus();
+      else serviceSelectRef.current?.focus();
       return;
     }
 
@@ -226,7 +251,9 @@ export default function ContactForm() {
       if (data.success) {
         toast.success(message);
         form.reset();
+        setInquiry("");
         setService("");
+        setBudget("");
         setWasValidated(false);
         setInvalidFields(new Set());
       } else {
@@ -239,6 +266,7 @@ export default function ContactForm() {
     }
   }
 
+  const isInquiryInvalid = invalidFields.has("inquiry");
   const isServiceInvalid = invalidFields.has("service");
 
   return (
@@ -251,13 +279,38 @@ export default function ContactForm() {
     >
       <div className="row g-3 g-md-4">
         <div className="col-12">
+          <label className="form-label" htmlFor="cf-inquiry">I&apos;m reaching out about</label>
+          <input type="hidden" name="inquiry" value={inquiry} />
+          <Select<Option, false>
+            ref={inquirySelectRef}
+            inputId="cf-inquiry"
+            instanceId="cf-inquiry"
+            className="service-select"
+            classNamePrefix="service-select"
+            options={INQUIRY_OPTIONS}
+            value={INQUIRY_OPTIONS.find((option) => option.value === inquiry) ?? null}
+            onChange={(option) => selectInquiry(option && isInquiryKey(option.value) ? option.value : "")}
+            placeholder="Choose one"
+            isSearchable={false}
+            styles={getSelectStyles(isInquiryInvalid)}
+            aria-describedby="cf-inquiry-feedback"
+          />
+          <div
+            id="cf-inquiry-feedback"
+            className={`invalid-feedback${wasValidated && isInquiryInvalid ? " d-block" : ""}`}
+          >
+            Please choose what you&apos;re reaching out about.
+          </div>
+        </div>
+
+        <div className="col-md-6">
           <label className="form-label" htmlFor="cf-name">Your Name</label>
           <input
             type="text"
             id="cf-name"
             name="name"
             className={`form-control${invalidFields.has("name") ? " is-invalid" : ""}`}
-            placeholder="Taimoor Shahid"
+            placeholder="Jane Smith"
             minLength={2}
             maxLength={100}
             required
@@ -265,43 +318,83 @@ export default function ContactForm() {
           />
           <div className="invalid-feedback">Please enter your name.</div>
         </div>
-        <div className="col-12">
+        <div className="col-md-6">
           <label className="form-label" htmlFor="cf-email">Your Email</label>
           <input
             type="email"
             id="cf-email"
             name="email"
             className={`form-control${invalidFields.has("email") ? " is-invalid" : ""}`}
-            placeholder="taimoor@example.com"
+            placeholder="jane@company.com"
             required
             onChange={handleFieldChange}
           />
           <div className="invalid-feedback">Please enter a valid email address.</div>
         </div>
-        <div className="col-12">
-          <label className="form-label" htmlFor="cf-service">Service</label>
-          <input type="hidden" name="service" value={service} />
-          <Select<ServiceOption, false>
-            ref={serviceSelectRef}
-            inputId="cf-service"
-            instanceId="cf-service"
-            className="service-select"
-            classNamePrefix="service-select"
-            options={SERVICE_OPTIONS}
-            value={SERVICE_OPTIONS.find((option) => option.value === service) ?? null}
-            onChange={handleServiceChange}
-            placeholder="Select a service"
-            isSearchable={false}
-            styles={getServiceSelectStyles(isServiceInvalid)}
-            aria-describedby="cf-service-feedback"
-          />
-          <div
-            id="cf-service-feedback"
-            className={`invalid-feedback${wasValidated && isServiceInvalid ? " d-block" : ""}`}
-          >
-            Please select a service.
+
+        {inquiry === "role" && (
+          <div className="col-12">
+            <label className="form-label" htmlFor="cf-company">
+              Company <span className="form-label-optional">(optional)</span>
+            </label>
+            <input
+              type="text"
+              id="cf-company"
+              name="company"
+              className="form-control"
+              placeholder="Company name"
+              maxLength={100}
+            />
           </div>
-        </div>
+        )}
+
+        {isFreelance && (
+          <>
+            <div className="col-md-6">
+              <label className="form-label" htmlFor="cf-service">Service</label>
+              <input type="hidden" name="service" value={service} />
+              <Select<Option, false>
+                ref={serviceSelectRef}
+                inputId="cf-service"
+                instanceId="cf-service"
+                className="service-select"
+                classNamePrefix="service-select"
+                options={SERVICE_SELECT_OPTIONS}
+                value={SERVICE_SELECT_OPTIONS.find((option) => option.value === service) ?? null}
+                onChange={handleServiceChange}
+                placeholder="Select a service"
+                isSearchable={false}
+                styles={getSelectStyles(isServiceInvalid)}
+                aria-describedby="cf-service-feedback"
+              />
+              <div
+                id="cf-service-feedback"
+                className={`invalid-feedback${wasValidated && isServiceInvalid ? " d-block" : ""}`}
+              >
+                Please select a service.
+              </div>
+            </div>
+            <div className="col-md-6">
+              <label className="form-label" htmlFor="cf-budget">
+                Budget <span className="form-label-optional">(optional)</span>
+              </label>
+              <input type="hidden" name="budget" value={budget} />
+              <Select<Option, false>
+                inputId="cf-budget"
+                instanceId="cf-budget"
+                className="service-select"
+                classNamePrefix="service-select"
+                options={BUDGET_SELECT_OPTIONS}
+                value={BUDGET_SELECT_OPTIONS.find((option) => option.value === budget) ?? null}
+                onChange={(option) => setBudget(option?.value ?? "")}
+                placeholder="Select a range"
+                isSearchable={false}
+                styles={getSelectStyles(false)}
+              />
+            </div>
+          </>
+        )}
+
         <div className="col-12">
           <label className="form-label" htmlFor="cf-message">Message</label>
           <textarea
@@ -309,7 +402,7 @@ export default function ContactForm() {
             name="message"
             className={`form-control${invalidFields.has("message") ? " is-invalid" : ""}`}
             rows={5}
-            placeholder="Tell me about your project..."
+            placeholder={MESSAGE_PLACEHOLDERS[inquiry]}
             minLength={10}
             maxLength={3000}
             required

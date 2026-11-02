@@ -7,9 +7,10 @@ export default function Contact() {
         <div className="row gy-5 contact-inner">
           <div className="col-lg-5 contact-info" data-aos="fade-right" data-aos-duration="900">
             <p className="eyebrow section-eyebrow">Get In Touch</p>
-            <h2 className="section-title section-heading">Let&apos;s Talk About Your Project</h2>
+            <h2 className="section-title section-heading">Let&apos;s Work Together</h2>
             <p className="contact-desc">
-              Have an idea in mind or just want to say hello? Fill out the form and I&apos;ll get back to you as soon as possible.
+              Hiring for your team, or need help with a project? Tell me a bit about it and I&apos;ll get back to you
+              as soon as possible.
             </p>
 
             <ul className="contact-list list-unstyled">

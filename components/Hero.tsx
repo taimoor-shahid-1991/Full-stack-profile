@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
+import { presetContactInquiry } from "@/lib/contact-options";
+
 export default function Hero() {
   const particlesRef = useRef<HTMLDivElement | null>(null);
 
@@ -79,6 +81,10 @@ export default function Hero() {
       <div className="container hero-inner">
         <div className="row align-items-center gy-5">
           <div className="col-lg-6 col-xxl-7 hero-content" data-aos="fade-right" data-aos-duration="900">
+            <span className="hero-status">
+              <span className="hero-status-dot" aria-hidden="true"></span>
+              Open to new opportunities
+            </span>
             <span className="eyebrow-mark">Hello, I&apos;m</span>
             <h1 className="hero-title">
               TAIMOOR
@@ -88,12 +94,13 @@ export default function Hero() {
             <h2 className="hero-subtitle">Senior Frontend &amp; Full-Stack Developer</h2>
             <span className="hero-stacks mb-3 d-block">React.js • Next.js • TypeScript • Node.js • PostgreSQL • MongoDB</span>
             <p className="hero-desc">
-              I build modern, responsive and high-performance web & mobile applications from idea to deployment.
+              Full Stack Developer at ArhamSoft. I build scalable SaaS and web applications with React, Next.js and
+              Node.js, from database design to a fast, production-ready UI.
             </p>
 
             <div className="hero-actions d-flex flex-wrap gap-3">
-              <a href="#projects" className="btn btn-primary btn-lg">
-                View My Work
+              <a href="#contact" className="btn btn-primary btn-lg" onClick={() => presetContactInquiry("freelance")}>
+                Hire Me for a Project
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </a>
               <a

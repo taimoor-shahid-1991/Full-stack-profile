@@ -925,11 +925,244 @@ section {
 }
 
 /* ==========================================================================
+   Experience
+   ========================================================================== */
+.experience {
+  background: var(--bg);
+}
+
+.experience-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 2.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+.experience-company {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.4rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-company-name {
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+}
+
+.experience-company-meta {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.experience-badge {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(255, 94, 46, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 94, 46, 0.1);
+}
+
+.experience-timeline {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.experience-timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(var(--accent), rgba(255, 94, 46, 0.1));
+}
+
+.experience-role {
+  position: relative;
+}
+
+.experience-role + .experience-role {
+  margin-top: 1.75rem;
+}
+
+.experience-dot {
+  position: absolute;
+  left: calc(-1.75rem + 1px);
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255, 94, 46, 0.18);
+}
+
+.experience-role-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.experience-role-title {
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.experience-role-period {
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.experience-highlights {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.experience-highlights li + li {
+  margin-top: 0.35rem;
+}
+
+.experience-highlights li::marker {
+  color: var(--accent);
+}
+
+.experience-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.9rem;
+}
+
+.experience-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.experience-link {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.experience-link:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 575.98px) {
+  .experience-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .experience-actions {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .experience-actions .btn {
+    justify-content: center;
+  }
+}
+
+/* Hero availability badge */
+.hero-status {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.1rem;
+  padding: 0.4rem 0.9rem;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  border-radius: 999px;
+  background: rgba(37, 211, 102, 0.08);
+}
+
+.hero-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #25d366;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  animation: hero-status-pulse 2s infinite;
+}
+
+@keyframes hero-status-pulse {
+  70% {
+    box-shadow: 0 0 0 8px rgba(37, 211, 102, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-status-dot {
+    animation: none;
+  }
+}
+
+/* Services intro + CTA */
+.services-intro {
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0.9rem auto 0;
+}
+
+.services-cta {
+  margin-top: 3rem;
+}
+
+.services-cta p {
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.services-cta .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-label-optional {
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+/* ==========================================================================
    Projects
    ========================================================================== */
-.projects {
+/* .projects {
   background: radial-gradient(ellipse 955px 536px at 50% 13%, #ff5e2e17, transparent 70%), var(--bg-alt);
-}
+} */
 
 .projects-grid {
   display: grid;
@@ -1548,33 +1781,23 @@ section {
   font-size: 1rem;
 }
 
-.footer-social .social-list a.twitter {
-  background: #1da1f2;
+.footer-social .social-list a.github {
+  background: #f0f0f0;
+  color: #111;
+}
+
+.footer-social .social-list a.email {
+  background: var(--accent);
+  color: #fff;
+}
+
+.footer-social .social-list a.whatsapp {
+  background: #25d366;
   color: #fff;
 }
 
 .footer-social .social-list a.linkedin {
   background: #0a66c2;
-  color: #fff;
-}
-
-.footer-social .social-list a.snapchat {
-  background: #fffc00;
-  color: #000;
-}
-
-.footer-social .social-list a.facebook {
-  background: #1877f2;
-  color: #fff;
-}
-
-.footer-social .social-list a.pinterest {
-  background: #e60023;
-  color: #fff;
-}
-
-.footer-social .social-list a.instagram {
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
   color: #fff;
 }
 
@@ -1667,7 +1890,8 @@ section {
     text-align: center;
   }
 
-  .hero-stacks {
+  .hero-stacks,
+  .hero-status {
     margin-left: auto;
     margin-right: auto;
   }

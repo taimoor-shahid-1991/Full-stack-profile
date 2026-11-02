@@ -1,5 +1,26 @@
 import type { ChatMessage } from "@/lib/chatbot/types";
 
+const LINK_PATTERN = /(https?:\/\/[^\s)]+|[\w.+-]+@[\w-]+\.[\w.]+)/g;
+
+// Turns URLs and email addresses inside assistant text into clickable links.
+function renderLinks(text: string) {
+  return text.split(LINK_PATTERN).map((part, i) => {
+    if (i % 2 === 0) return part;
+    const href = part.includes("@") && !part.startsWith("http") ? `mailto:${part}` : part;
+    const external = href.startsWith("http");
+    return (
+      <a
+        key={i}
+        href={href}
+        className="chatbot-link"
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
+        {part.replace(/^https?:\/\/(www\.)?/, "")}
+      </a>
+    );
+  });
+}
+
 function renderInline(line: string, key: number) {
   const parts = line.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
   return (
@@ -8,7 +29,7 @@ function renderInline(line: string, key: number) {
         part.startsWith("**") && part.endsWith("**") ? (
           <strong key={i}>{part.slice(2, -2)}</strong>
         ) : (
-          <span key={i}>{part}</span>
+          <span key={i}>{renderLinks(part)}</span>
         )
       )}
     </span>

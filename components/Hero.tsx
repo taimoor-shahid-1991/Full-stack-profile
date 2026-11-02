@@ -79,7 +79,7 @@ export default function Hero() {
     <section className="hero" id="home">
       <div ref={particlesRef} id="particles-js" className="particles-bg" />
       <div className="container hero-inner">
-        <div className="row align-items-center gy-5">
+        <div className="row align-items-end gy-5">
           <div className="col-lg-6 col-xxl-7 hero-content" data-aos="fade-right" data-aos-duration="900">
             <span className="hero-status">
               <span className="hero-status-dot" aria-hidden="true"></span>

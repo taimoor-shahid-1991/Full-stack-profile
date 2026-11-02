@@ -5,8 +5,10 @@ import {
   EDUCATION,
   EXPERIENCE,
   LANGUAGES,
+  PORTFOLIO_BUDGETS,
   PORTFOLIO_PROJECTS,
   PORTFOLIO_SERVICES,
+  PORTFOLIO_TESTIMONIALS,
   PROFILE,
   SKILLS,
   STRENGTHS,
@@ -14,7 +16,7 @@ import {
 import type { AIIntent, IntentMatch, SuggestedQuestion } from "@/lib/chatbot/types";
 
 const FALLBACK_TEXT =
-  "I don't have that information in my portfolio knowledge, but you can ask me about Taimoor's experience, skills, projects, education, or contact information.";
+  "I don't have that information in my portfolio knowledge, but you can ask me about Taimoor's experience, skills, projects, services, availability, or how to contact him.";
 
 function list(items: string[]): string {
   return items.map((item) => `• ${item}`).join("\n");
@@ -39,20 +41,23 @@ function projectResponse(project: (typeof PORTFOLIO_PROJECTS)[number]): string {
 function buildResponse(match: IntentMatch): string {
   switch (match.intent) {
     case "greeting":
-      return `Hi! I'm Taimoor's portfolio assistant. Ask me about his experience, tech stack, projects, education, or how to get in touch.`;
+      return `Hi! I'm Taimoor's portfolio assistant. Ask me about his experience, tech stack, projects, services, or how to get in touch.`;
 
     case "thanks":
       return "You're welcome! Let me know if there's anything else you'd like to know about Taimoor.";
 
     case "about":
-      return `${PROFILE.summary} He's based in ${PROFILE.location} and enjoys turning complex problems into clean, maintainable solutions.`;
+      return `${PROFILE.summary} He's based in ${PROFILE.location} and is ${PROFILE.status}.`;
 
     case "experience":
       return [
-        `Taimoor has ${PROFILE.experience} of professional experience building scalable, production-grade web applications across frontend and backend.`,
+        `Taimoor has ${PROFILE.experience} of professional experience building scalable, production-grade web applications. He joined ArhamSoft IT Solutions as a Senior Frontend Developer and was promoted to Full Stack Developer.`,
         "",
         "Work history:",
-        list(EXPERIENCE.map((job) => `${job.title}, ${job.company} (${job.period})`)),
+        list(EXPERIENCE.map((job) => `**${job.title}**, ${job.company} (${job.period})`)),
+        "",
+        "Current responsibilities:",
+        list(EXPERIENCE[0]?.highlights ?? []),
       ].join("\n");
 
     case "mobile":
@@ -60,10 +65,11 @@ function buildResponse(match: IntentMatch): string {
 
     case "availability":
       return [
-        "Taimoor is open to discussing new projects and opportunities. The quickest way to reach him:",
-        `• Email: ${CONTACT.email}`,
-        `• WhatsApp: ${CONTACT.whatsapp}`,
-        "• Or use the contact form at the bottom of this page.",
+        `Yes. Taimoor is ${PROFILE.status}.`,
+        "",
+        "• Hiring for a role: use the contact form and choose **Full-time / contract role**, or download his CV: " + CONTACT.cv,
+        "• Freelance work: choose **Freelance project** in the contact form, or use the **Hire Me for a Project** button.",
+        `• Or email him directly: ${CONTACT.email}`,
       ].join("\n");
 
     case "languages":
@@ -117,7 +123,27 @@ function buildResponse(match: IntentMatch): string {
       return ["Taimoor's everyday development tools:", list(SKILLS.tools)].join("\n");
 
     case "services":
-      return ["Taimoor offers the following services:", list(PORTFOLIO_SERVICES.map((s) => s.title))].join("\n");
+      return [
+        "Alongside his full-time role, Taimoor takes on selected freelance projects. He can help with:",
+        list(PORTFOLIO_SERVICES.map((s) => `**${s.title}**: ${s.text}`)),
+        "",
+        "To discuss a project, choose **Freelance project** in the contact form.",
+      ].join("\n");
+
+    case "pricing":
+      return [
+        "Pricing depends on the scope of the project, so Taimoor quotes each one individually.",
+        `The contact form lets you pick a budget range (${PORTFOLIO_BUDGETS.join(", ")}). Share your project details there and he'll get back to you with an estimate.`,
+      ].join("\n");
+
+    case "testimonials":
+      return [
+        "Here's what people say about working with Taimoor:",
+        ...PORTFOLIO_TESTIMONIALS.map((t) => `• "${t.quote}" — **${t.name}**, ${t.role}`),
+      ].join("\n");
+
+    case "resume":
+      return `You can download Taimoor's CV here: ${CONTACT.cv}\nIt's also available via the **Download CV** button at the top of the page.`;
 
     case "projects":
       return [
@@ -142,7 +168,10 @@ function buildResponse(match: IntentMatch): string {
         `• Email: ${CONTACT.email}`,
         `• Phone / WhatsApp: ${CONTACT.phone}`,
         `• LinkedIn: ${CONTACT.linkedin}`,
+        `• GitHub: ${CONTACT.github}`,
         `• Location: ${CONTACT.location}`,
+        "",
+        "Or use the contact form at the bottom of this page.",
       ].join("\n");
 
     case "location":
@@ -163,10 +192,10 @@ export function getSuggestedQuestions(): SuggestedQuestion[] {
     { id: "about", label: "Tell me about Taimoor" },
     { id: "experience", label: "How much experience does he have?" },
     { id: "techStack", label: "What technologies does he use?" },
-    { id: "typescript", label: "Does he know TypeScript?" },
     { id: "projects", label: "What projects has he worked on?" },
     { id: "project-1", label: `Tell me about ${PORTFOLIO_PROJECTS[0]?.name}` },
-    { id: "education", label: "What is his educational background?" },
+    { id: "availability", label: "Is he available for work?" },
+    { id: "services", label: "What services does he offer?" },
     { id: "contact", label: "How can I contact him?" },
   ];
 }

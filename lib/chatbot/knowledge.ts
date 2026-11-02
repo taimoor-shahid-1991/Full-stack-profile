@@ -2,14 +2,18 @@ import { PROJECTS } from "@/components/Projects";
 import { SERVICES } from "@/components/Services";
 import { STATS } from "@/components/About";
 import { COMPANY, EXPERIENCE as EXPERIENCE_ROLES } from "@/components/Experience";
+import { TESTIMONIALS } from "@/components/Testimonials";
+import { BUDGET_OPTIONS } from "@/lib/contact-options";
 
 export const PROFILE = {
   name: "Taimoor Shahid",
   role: "Senior Frontend & Full-Stack Developer",
   experience: "5+ years",
   location: "Lahore, Pakistan",
+  currentRole: "Full Stack Developer at ArhamSoft IT Solutions",
+  status: "open to new opportunities (full-time or contract roles) and freelance projects",
   summary:
-    "Taimoor is a Senior Frontend & Full-Stack Developer with 5+ years of experience building scalable, high-performance web applications. His core stack is React, Next.js, TypeScript, Node.js, PostgreSQL and MongoDB.",
+    "Taimoor is a Senior Frontend & Full-Stack Developer with 5+ years of experience building scalable SaaS and web applications. He's currently a Full Stack Developer at ArhamSoft IT Solutions, and his core stack is React, Next.js, TypeScript, Node.js, PostgreSQL and MongoDB.",
 };
 
 export const SKILLS = {
@@ -30,7 +34,7 @@ export const SKILLS = {
   ],
   backend: ["Node.js", "Express.js", "REST APIs"],
   database: ["PostgreSQL", "MongoDB", "Prisma ORM"],
-  stateManagement: ["Redux Toolkit", "RTK Query", "Context API", "Vuex"],
+  stateManagement: ["Redux Toolkit", "RTK Query", "Context API"],
   cms: ["WordPress", "Shopify", "Webflow", "Bubble.io"],
   tools: ["Git", "GitHub", "VS Code", "Postman", "npm", "Vercel"],
 };
@@ -104,9 +108,13 @@ export const CONTACT = {
   whatsapp: "https://wa.me/923238820858",
   linkedin: "https://www.linkedin.com/in/taimoor-shahid-713277234",
   github: "https://github.com/taimoor-shahid-1991",
+  portfolio: "https://taimoor-shahid.vercel.app",
+  cv: "https://taimoor-shahid.vercel.app/cv/Taimoor_Shahid.pdf",
   location: "Lahore, Pakistan",
 };
 
 export const PORTFOLIO_STATS = STATS;
 export const PORTFOLIO_PROJECTS = PROJECTS;
 export const PORTFOLIO_SERVICES = SERVICES;
+export const PORTFOLIO_TESTIMONIALS = TESTIMONIALS;
+export const PORTFOLIO_BUDGETS = BUDGET_OPTIONS;

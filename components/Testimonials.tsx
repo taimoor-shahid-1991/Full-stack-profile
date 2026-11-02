@@ -1,4 +1,4 @@
-const TESTIMONIALS = [
+export const TESTIMONIALS = [
   {
     quote:
       "Taimoor is a highly professional developer. He delivered a robust solution that exceeded expectations. Great communication, clean code and always on time.",
